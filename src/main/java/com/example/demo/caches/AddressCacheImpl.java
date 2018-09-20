@@ -23,10 +23,10 @@ public class AddressCacheImpl implements AddressCache {
     @Cacheable
     public List<Address> getAddresses() {
         log.info("Get all addresses");
-        return generateAddresList((int) (Math.random() * 10));
+        return generateAddressList((int) (Math.random() * 10));
     }
 
-    private List<Address> generateAddresList(int i) {
+    private List<Address> generateAddressList(int i) {
         List<Address> addresses = new ArrayList<Address>(i);
         for (int j = 0; j < i; ++j) {
             try {
