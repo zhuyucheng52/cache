@@ -1,6 +1,9 @@
 package com.example.demo.service;
 
+import com.example.demo.domain.Address;
 import com.example.demo.domain.User;
+
+import java.util.List;
 
 /**
  * Auth: yucheng
@@ -13,4 +16,6 @@ public interface HelloService {
     int deleteUserById(Long id);
 
     void deleteUsers();
+
+    List<Address> getAddress();
 }

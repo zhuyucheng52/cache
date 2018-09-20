@@ -1,26 +1,29 @@
 package com.example.demo.service;
 
+import com.example.demo.caches.AddressCache;
 import com.example.demo.caches.UserCache;
+import com.example.demo.domain.Address;
 import com.example.demo.domain.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.Cache;
-import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Auth: yucheng
  * Date: 2018/9/6
  * Desc:
  */
-@Service
 @Slf4j
+@Service
 public class HelloServiceImpl implements HelloService {
     @Autowired
     private UserCache userCache;
 
     @Autowired
-    private CacheManager cacheManager;
+    private AddressCache addressCache;
+
 
     @Override
     public User getUserById(Long id) {
@@ -34,11 +37,12 @@ public class HelloServiceImpl implements HelloService {
 
     @Override
     public void deleteUsers() {
-        Cache cache = cacheManager.getCache("idUserCache");
-        if (null != cache) {
-            log.info("Clear cache idUserCache");
-            cache.clear();
-        }
+        userCache.clear();
+    }
+
+    @Override
+    public List<Address> getAddress() {
+        return addressCache.getAddresses();
     }
 
 }

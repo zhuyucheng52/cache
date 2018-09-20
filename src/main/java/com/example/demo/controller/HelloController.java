@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.Address;
 import com.example.demo.domain.User;
 import com.example.demo.service.HelloServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Auth: yucheng
@@ -36,6 +39,13 @@ public class HelloController {
 
     @DeleteMapping(value = "/cache")
     public void deleteUsers() {
+        log.info("Delete users");
         service.deleteUsers();
+    }
+
+    @GetMapping(value = "/cache/address")
+    public List<Address> getAddresses() {
+        log.info("Get addresses");
+        return service.getAddress();
     }
 }

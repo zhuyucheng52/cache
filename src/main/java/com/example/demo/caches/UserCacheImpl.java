@@ -3,6 +3,9 @@ package com.example.demo.caches;
 import com.example.demo.domain.User;
 import com.sun.istack.internal.Nullable;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -19,6 +22,8 @@ import java.util.concurrent.TimeUnit;
 @Component
 @CacheConfig(cacheNames = "idUserCache")
 public class UserCacheImpl implements UserCache {
+    @Autowired
+    private CacheManager cacheManager;
 
     @Override
     @Cacheable(key = "#p0")
@@ -32,6 +37,15 @@ public class UserCacheImpl implements UserCache {
     public int deleteUserById(Long id) {
         log.info("Delete user by id: {}", id);
         return 0;
+    }
+
+    @Override
+    public void clear() {
+        Cache cache = cacheManager.getCache("idUserCache");
+        if (null != cache) {
+            log.info("Clear cache idUserCache");
+            cache.clear();
+        }
     }
 
     private static final User generateUser(@Nullable Long id) {
