@@ -5,9 +5,8 @@ import com.example.demo.domain.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /**
  * Auth: yucheng
@@ -20,8 +19,8 @@ public class HelloServiceImpl implements HelloService {
     @Autowired
     private UserCache userCache;
 
-    @Resource(name = "idUserCache")
-    private Cache cache;
+    @Autowired
+    private CacheManager cacheManager;
 
     @Override
     public User getUserById(Long id) {
@@ -33,5 +32,13 @@ public class HelloServiceImpl implements HelloService {
         return userCache.deleteUserById(id);
     }
 
+    @Override
+    public void deleteUsers() {
+        Cache cache = cacheManager.getCache("idUserCache");
+        if (null != cache) {
+            log.info("Clear cache idUserCache");
+            cache.clear();
+        }
+    }
 
 }

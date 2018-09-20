@@ -11,4 +11,6 @@ public interface HelloService {
     User getUserById(Long id);
 
     int deleteUserById(Long id);
+
+    void deleteUsers();
 }

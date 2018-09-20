@@ -33,4 +33,9 @@ public class HelloController {
         log.info("Delete user by id: {}", id);
         service.deleteUserById(id);
     }
+
+    @DeleteMapping(value = "/cache")
+    public void deleteUsers() {
+        service.deleteUsers();
+    }
 }
