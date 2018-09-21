@@ -18,4 +18,6 @@ public interface HelloService {
     void deleteUsers();
 
     List<Address> getAddress();
+
+    void deleteAddress();
 }

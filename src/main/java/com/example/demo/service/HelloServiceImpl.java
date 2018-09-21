@@ -45,4 +45,9 @@ public class HelloServiceImpl implements HelloService {
         return addressCache.getAddresses();
     }
 
+    @Override
+    public void deleteAddress() {
+        addressCache.clear();
+    }
+
 }

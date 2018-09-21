@@ -25,19 +25,19 @@ public class HelloController {
     @Autowired
     private HelloServiceImpl service;
 
-    @GetMapping(value = "/cache/{id:\\d+}")
+    @GetMapping(value = "/cache/user/{id:\\d+}")
     public User getUserByName(@PathVariable("id") Long id) {
         log.info("Get user by id: {}", id);
         return service.getUserById(id);
     }
 
-    @DeleteMapping(value = "/cache/{id:\\d+}")
+    @DeleteMapping(value = "/cache/user/{id:\\d+}")
     public void deleteUserByName(@PathVariable("id") Long id) {
         log.info("Delete user by id: {}", id);
         service.deleteUserById(id);
     }
 
-    @DeleteMapping(value = "/cache")
+    @DeleteMapping(value = "/cache/user")
     public void deleteUsers() {
         log.info("Delete users");
         service.deleteUsers();
@@ -47,5 +47,11 @@ public class HelloController {
     public List<Address> getAddresses() {
         log.info("Get addresses");
         return service.getAddress();
+    }
+
+    @DeleteMapping(value = "/cache/address")
+    public void deleteAddress() {
+        log.info("Delete address");
+        service.deleteAddress();
     }
 }

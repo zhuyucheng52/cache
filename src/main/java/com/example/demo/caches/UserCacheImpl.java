@@ -45,6 +45,8 @@ public class UserCacheImpl implements UserCache {
         if (null != cache) {
             log.info("Clear cache idUserCache");
             cache.clear();
+        } else {
+            log.warn("Clear cache idUserCache is not exists");
         }
     }
 

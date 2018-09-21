@@ -11,4 +11,5 @@ import java.util.List;
  */
 public interface AddressCache {
     List<Address> getAddresses();
+    void clear();
 }
