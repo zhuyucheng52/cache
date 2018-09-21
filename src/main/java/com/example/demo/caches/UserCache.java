@@ -9,6 +9,8 @@ import com.example.demo.domain.User;
  */
 public interface UserCache {
     User getUserById(Long id);
+
     int deleteUserById(Long id);
+
     void clear();
 }
